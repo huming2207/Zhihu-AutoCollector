@@ -1,12 +1,7 @@
 from zhihu_oauth import ZhihuClient
 from zhihu_oauth import zhcls
 from multiprocessing.dummy import Pool as ThreadPool
-
-keyword_file = 'keyword.txt'
-
-with open(keyword_file) as f:
-    keyword_contents = f.read().splitlines()
-pool = ThreadPool(7)
+import argparse
 
 
 def do_check(following):
@@ -28,11 +23,37 @@ def do_check(following):
 
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--collection", "-c", help="Set collection ID, e.g. 99549491")
+    parser.add_argument("--thread","-t", help="Set the threads, 3 to 7 is recommended, default value is 5.")
+
     client = ZhihuClient()
     client.login_in_terminal()
 
     me = client.me()
-    collection = client.collection(99549491)
+
+    args = parser.parse_args()
+    if args.collection:
+        print("Selected collection: ", str(args.collection))
+        collection = client.collection(int(args.collection))
+    else:
+        print("YOU MUST TELL ME WHICH COLLECTION YOU WANT TO ADD IN!!")
+        exit()
+
+    if args.thread:
+        print("Thread amount: ", str(args.thread))
+        pool = ThreadPool(int(args.thread))
+    else:
+        print("Thread amount: 5 (DEFAULT)")
+        pool = ThreadPool(5)
+
+    keyword_file = 'keyword.txt'
+
+    with open(keyword_file) as f:
+        keyword_contents = f.read().splitlines()
+
+
 
     print("Name:", me.name)
     print("\n\n", "Keywords are:\n\n")
