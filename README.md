@@ -6,8 +6,14 @@
 
 用本工具登录后，它会自动爬取你关注的人的点赞和回答，并将命中关键词列表的回答帖子加入指定收藏中。
 
+参数说明：
+	
+	—-collection CollectionID    指定一个收藏夹ID
+	—-thread ThreadAmount	      指定线程数，建议小于10，视情况最好在3到7左右。
+
 ### 依赖
-7sDream大神的zhihu-oauth；
+7sDream大神的zhihu-oauth: https://github.com/7sDream/zhihu-oauth
+
 ThreadPool多线程库（自带）。
 
 ### 输出结果
