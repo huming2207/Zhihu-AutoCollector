@@ -8,8 +8,9 @@
 
 参数说明：
 	
-	—-collection CollectionID    指定一个收藏夹ID
-	—-thread ThreadAmount	      指定线程数，建议小于10，视情况最好在3到7左右。
+	—-collection CollectionID    指定一个收藏夹ID （必须）
+
+	—-thread ThreadAmount	      指定线程数，建议小于10，视情况最好在3到7左右。（可选）
 
 ### 依赖
 7sDream大神的zhihu-oauth: https://github.com/7sDream/zhihu-oauth
