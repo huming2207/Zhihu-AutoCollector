@@ -1,26 +1,30 @@
-# Zhihu-AutoCollector
-一个基于Python的多线程的知乎爬虫+按关键字词自动收藏工具
+# zhihu-collection-manager
+一个基于Python的多线程知乎自动收藏/收藏管理脚本工具集。
 
-### 使用方法
+***For those non-Chinese guys:***
+
+Zhihu (Chinese: 知乎) is a Chinese online Q&A forum. See here: https://en.wikipedia.org/wiki/Zhihu
+
+These python tools are designed for automatically collecting/managing answers on Zhihu.
+
+
+### 使用方法 - zhc-autocollect
+zhc-autocollect是一个按关键词自动爬取知乎上的帖子内容的脚本。
+
 使用前请在***keyword.txt关键词列表***设置关键词，每行一个。
 
 用本工具登录后，它会自动爬取你关注的人的点赞和回答，并将命中关键词列表的回答帖子加入指定收藏中。
 
 参数说明：
-	
+
 	—-collection CollectionID    指定一个收藏夹ID （必须）
 
 	—-thread ThreadAmount	      指定线程数，建议小于10，视情况最好在3到7左右。（可选）
 
-### 依赖
-7sDream大神的zhihu-oauth: https://github.com/7sDream/zhihu-oauth
-
-ThreadPool多线程库（自带）。
-
-### 输出结果
+输出结果示例：
 
 ```
-/usr/local/bin/python3 /Users/Jackson/Documents/projects/Zhihu-AutoAnalyzer/main.py
+/usr/local/bin/python3 /Users/Jackson/Documents/projects/Zhihu-AutoAnalyzer/zhc-autocollect.py
 ----- Zhihu OAuth Login -----
 email: ********@gmail.com
 password: **********
@@ -49,48 +53,6 @@ Follower ID:  f04f2cf01a1c1a87df7bab3b95314ed3
 Found  于雅枫 's answer ID: 97199771 , with keyword  红衣
 Found  于雅枫 's answer ID: 97199771 , with keyword  难再续
 Found  Summer Clover 's answer ID: 99512799 , with keyword  大新闻
-Found  小王子 's answer ID: 66188227 , with keyword  大新闻
-Found  贺仙 's answer ID: 98465211 , with keyword  蛤蛤
-Found  王不二 's answer ID: 84432832 , with keyword  谈笑风生
-Found  Ran dom 's answer ID: 60548921 , with keyword  三个代表
-Found  陈阿直 's answer ID: 90390432 , with keyword  too young
-Found  大简木一乐 's answer ID: 39356889 , with keyword  长者
-Found  匿名用户 's answer ID: 93620547 , with keyword  +1s
-Found  黑则明 's answer ID: 97940687 , with keyword  长者
-Found  黑则明 's answer ID: 97940687 , with keyword  坠吼
-Found  黑则明 's answer ID: 97940687 , with keyword  赛艇
-Found  李鹏 's answer ID: 96222634 , with keyword  naive
-Found  李鹏 's answer ID: 96222634 , with keyword  赛艇
-Found  贺仙 's answer ID: 64481120 , with keyword  excited
-Found  闲人王氏 's answer ID: 91897974 , with keyword  大新闻
-Found  匿名用户 's answer ID: 93854386 , with keyword  +1s
-Found  王冶坪 's answer ID: 95874827 , with keyword  +1s
-Found  Hermite Bai 's answer ID: 81052112 , with keyword  军队一律不得经商
-Found  于雅枫 's answer ID: 69683949 , with keyword  谈笑风生
-Found  Ross 李 's answer ID: 79540035 , with keyword  赛艇
-Found  高潮 's answer ID: 87361321 , with keyword  见着风是得雨
-Found  高潮 's answer ID: 87361321 , with keyword  三个代表
-Found  李少荃 's answer ID: 94901410 , with keyword  三个代表
-Found  高潮 's answer ID: 87361321 , with keyword  军队经商
-Found  彭路遥 's answer ID: 76623614 , with keyword  赛艇
-Found  NE恶灵 's answer ID: 91853834 , with keyword  吼啊
-Found  贺仙 's answer ID: 77132771 , with keyword  赛艇
-Found  张兆杰 's answer ID: 63050233 , with keyword  大新闻
-Found  天下之水 's answer ID: 89713352 , with keyword  无可奉告
-Found  杨嘉煜 's answer ID: 87431899 , with keyword  谈笑风生
-Found  夏木 's answer ID: 89535638 , with keyword  大新闻
-Found  千古留名 's answer ID: 85213074 , with keyword  历史的行程
-Found  邓涵 's answer ID: 52715937 , with keyword  红衣
-Found  Hannibal Lecter 's answer ID: 91022943 , with keyword  谈笑风生
-Found  阿五 's answer ID: 93066628 , with keyword  naive
-Follower ID:  e74a18105bd4610298f6402010da09c4
-Found  凯常 's answer ID: 72185884 , with keyword  长者
-Found  yalding 's answer ID: 76364092 , with keyword  红衣
-Found  路人乙食肉馒 's answer ID: 74273573 , with keyword  谈笑风生
-Found  Lee General 's answer ID: 53279255 , with keyword  长者
-Found  vczh 's answer ID: 84807466 , with keyword  excited
-Found  匿名用户 's answer ID: 63014334 , with keyword  长者
-Found  温义飞 's answer ID: 84028357 , with keyword  红衣
 Found  楚歌 's answer ID: 96297104 , with keyword  历史的行程
 Found  凤红邪 's answer ID: 84253765 , with keyword  谈笑风生
 Found  凤红邪 's answer ID: 84253765 , with keyword  华莱士
@@ -102,21 +64,91 @@ Found  和彩 's answer ID: 16424385 , with keyword  too young
 Found  狐照尾 's answer ID: 99496798 , with keyword  坠吼
 Found  苏穆羽 's answer ID: 84223770 , with keyword  大新闻
 Found  和彩 's answer ID: 16424385 , with keyword  too simple
-Traceback (most recent call last):
-  File "/Users/Jackson/Documents/projects/Zhihu-AutoAnalyzer/main.py", line 43, in <module>
-    pool.map(do_check, me.followings)
-  File "/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/multiprocessing/pool.py", line 260, in map
-    return self._map_async(func, iterable, mapstar, chunksize).get()
-  File "/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/multiprocessing/pool.py", line 602, in get
-    self.wait(timeout)
-  File "/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/multiprocessing/pool.py", line 599, in wait
-    self._event.wait(timeout)
-  File "/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/threading.py", line 549, in wait
-    signaled = self._cond.wait(timeout)
-  File "/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/python3.5/threading.py", line 293, in wait
-    waiter.acquire()
-KeyboardInterrupt
 
-Process finished with exit code 1
+（下略）
 
 ```
+
+### 使用方法 - zhc-backup
+zhc-backup是一个备份知乎收藏夹的脚本。
+
+参数说明：
+
+	—-collection CollectionID    指定一个收藏夹ID （必须）
+
+	—-thread ThreadAmount	      指定线程数，建议小于10，视情况最好在3到7左右。（可选）
+
+	--download									下载（备份）模式，将自动下载指定收藏夹内容。
+
+	--upload										上传（备份）模式，将自动上传脚本同目录中的备份数据到指定收藏夹。
+
+示例输出：
+
+```
+
+/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/bin/python3.5 /Users/Jackson/Documents/projects/Zhihu-AutoCollector/zhc-backup.py --collection 82049870 --download --thread 3
+----- Zhihu OAuth Login -----
+email: *****************
+password: **************
+
+Login success.
+Selected collection:  82049870
+Thread amount:  3
+Mode: Download (Backup)
+Initializing...
+Now backing up: 如何看待网传上海某医院给植物人注射葡萄糖使其质壁分离致死，家属起诉医院事件？ - 米调炫枫
+Now backing up: 有哪些不在语文课本里，但脍炙人口，很多人都会背诵引用的名篇？ - 陈陈浩华
+Now backing up: 520求各种撩妹技能？ - 空峰
+Now backing up: 如何反驳「因为你迟到，全班40个人每人耽误一分钟，加起来是一节课」？ - licro
+Now backing up: 10 个字可以写出什么样的微小说？ - 愚木
+Now backing up: 有哪些不在语文课本里，但脍炙人口，很多人都会背诵引用的名篇？ - 顾凌峰
+Now backing up: 如何评价《诸夏自由同盟宣言》与刘仲敬粉丝新建的诸夏论坛？ - 停姨间
+Now backing up: 如何优雅的佩戴三角帽？ - 猫头鹰
+Now backing up: 除了「困在同一天」，科幻小说还有哪些清奇的脑洞？ - 吴易
+Now backing up: 真正的粉丝是什么样的？ - 帷幕
+Now backing up: 真正的粉丝是什么样的？ - 凯常
+Now backing up: 如何把深圳蛇口公安的通知翻译成精美的文言文？ - 麦克信田
+Now backing up: 用什么可以替代求婚钻戒？ - 猫头鹰
+Now backing up: 真正的粉丝是什么样的？ - 蠢凡凡
+Now backing up: 如何看待很多成年人喊着过六一儿童节？ - 猫头鹰
+Now backing up: 如何翻译“苟利国家生死以，岂因祸福避趋之”？ - 张天乙
+Now backing up: 留学的你，还记得跨出国门第一天的感受么？ - 猫头鹰
+Now backing up: 如何评价「偽中国語」？ - 京滨 HybridE210
+Now backing up: 如何翻译“苟利国家生死以，岂因祸福避趋之”？ - 威廉姆斯
+Now backing up: 有没有听起来很有钱的民谣？ - 夕林故人
+Now backing up: 如何看待「中国是母亲，香港是孩子」的比喻？ - 猫头鹰
+Now backing up: 人生一定会遇到那个对的人吗？ - 夜溟
+Now backing up: 有哪些精彩有趣的名家跨界作品值得推荐？ - Einzbern
+Now backing up: 有哪些经典的战前动员讲话？ - 匿名用户
+Now backing up: 皮肤也能辅助呼吸，为什么把头闷就会死呢? - 到处挖坑蒋玉成
+Now backing up: 你认为的最有意思的歪改诗句有哪些？ - 千古留名
+Now backing up: 如果不考虑薪水尊严面子，你最想从事什么工作？ - Einzbern
+Now backing up: 如何挑逗女朋友? - 龙共火火
+Now backing up: 如何看待希拉里炮轰特朗普：我们在选总统而非独裁者？ - 涂样
+Now backing up: 素质高的标准是什么？ - 涂样
+Now backing up: 「政治控」为什么会大量乐此不疲地活跃存在？ - 邰原朗
+Now backing up: 你认为净空法师怎么样？ - 凯常
+Now backing up: 在内燃机广泛应用以前中国人怎么给人“加油”？ - 匿名用户
+Now backing up: 东北人有哪些令你难以忘怀的特点？ - 陆堂闵
+Now backing up: 喜欢昆虫的男生有哪里不对吗？ - 匿名用户
+
+（下略）
+
+```
+
+
+### 使用方法 - zhc-merger
+zhc-merger是一个合并知乎收藏夹的脚本。
+
+***WIP***
+
+### 使用方法 - zhc-copier
+zhc-copier是一个复制知乎收藏夹的脚本
+
+***WIP***
+
+
+### 依赖
+7sDream大神的zhihu-oauth: https://github.com/7sDream/zhihu-oauth
+
+ThreadPool多线程库（自带）。
